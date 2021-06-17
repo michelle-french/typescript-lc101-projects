@@ -23,7 +23,7 @@ export class Rocket implements Payload {
     }
 
     currentMassKg(): number {
-        return this.sumMass(this.astronauts)+this.sumMass(this.astronauts)
+        return this.sumMass(this.astronauts)+this.sumMass(this.cargoItems);
     }
 
     canAdd(item: Payload): boolean {
@@ -32,29 +32,20 @@ export class Rocket implements Payload {
     }
 
     addCargo(cargo: Cargo): boolean {
-        if(this.canAdd(cargo) == true) {
+        if(this.canAdd(cargo)) {
             this.cargoItems.push(cargo);
-        }
-        return true;
-    }
+            return true;
+        }else {
+            return false
+    }}
 
     addAstronaut(astronaut: Astronaut): boolean {
-        if(this.canAdd(astronaut) == true) {
+        if(this.canAdd(astronaut)) {
             this.astronauts.push(astronaut)
-        }
-        return true;
-    }
+            return true;
+        } else {
+            return false
+    }}
 
 }
 
-
-
-
-
-
-
-
-// getDaysToLocation(kilometersAway: number): number {
-//     let milesAway: number = kilometersAway * this.milesPerKilometer;
-//     let hours: number = milesAway / this.speedMph;
-//     return hours / 24;
